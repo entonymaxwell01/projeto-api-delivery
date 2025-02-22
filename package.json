@@ -1,0 +1,38 @@
+{
+  "name": "projeto-api-delivery",
+  "version": "1.0.0",
+  "description": "Projeto para portfolio de uma api rest para um restaurante com delivery",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/entonymaxwell01/projeto-api-delivery.git"
+  },
+  "author": "entony maxwell",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/entonymaxwell01/projeto-api-delivery/issues"
+  },
+  "homepage": "https://github.com/entonymaxwell01/projeto-api-delivery#readme",
+  "dependencies": {
+    "@sequelize/postgres": "^7.0.0-alpha.45",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-validator": "^7.2.1",
+    "helmet": "^8.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "pg": "^8.13.3",
+    "sequelize": "^6.37.5",
+    "sqlite3": "^5.1.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
