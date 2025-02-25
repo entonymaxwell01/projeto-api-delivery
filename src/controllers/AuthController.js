@@ -6,6 +6,12 @@ module.exports = {
     try {
       const { nome, email, cpf, password } = req.body;
 
+      if (!nome || !email || !cpf || !password) {
+        return res
+          .status(400)
+          .json({ error: "Campos obrigatórios não preenchidos" });
+      }
+
       const user = await UserService.register(nome, email, cpf, password);
       return res
         .status(201)

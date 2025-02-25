@@ -12,6 +12,10 @@ const UserService = {
 
       const hashedPassword = await bcrypt.hash(password, 10);
 
+      if (!nome || !email || !cpf || !password) {
+        throw new Error("Campos obrigatórios não preenchidos");
+      }
+
       const user = await User.create({
         nome,
         email,
