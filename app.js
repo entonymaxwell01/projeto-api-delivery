@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const morgan = require("morgan");
+const setupSwagger = require("./config/swaggerConfig");
 require("dotenv").config();
 
 const authRoutes = require("./src/routers/auth.routes");
@@ -17,6 +18,8 @@ app.use(morgan("dev"));
 
 app.use("/auth", authRoutes);
 app.use("/usuarios", userRoutes);
+
+setupSwagger(app);
 
 app.get("/", (req, res) => {
   res.send("Bem vindo a API do sistema de delivery");
