@@ -1,6 +1,6 @@
 #Pacokage files
 node_modules
-packge-lock.json
+package-lock.json
 
 #Credentials
 .env
@@ -14,4 +14,4 @@ cypress.env.json
 #Build files
 /dist
 /.cache
-package-lock.json
+
