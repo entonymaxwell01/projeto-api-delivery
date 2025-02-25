@@ -13,9 +13,17 @@ module.exports = {
       }
 
       const user = await UserService.register(nome, email, cpf, password);
+
+      const userResponse = {
+        id: user.id,
+        nome: user.nome,
+        email: user.email,
+        cpf: user.cpf,
+      };
+
       return res
         .status(201)
-        .json({ user, message: "Usuário cadastrado com sucesso" });
+        .json({ userResponse, message: "Usuário cadastrado com sucesso" });
     } catch (err) {
       if (err.message === "Usuário já cadastrado") {
         return res.status(409).json({ error: err.message });
