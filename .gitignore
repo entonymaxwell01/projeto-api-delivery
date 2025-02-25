@@ -14,3 +14,4 @@ cypress.env.json
 #Build files
 /dist
 /.cache
+package-lock.json
