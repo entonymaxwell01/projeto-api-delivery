@@ -1,3 +1,16 @@
+#Pacokage files
 node_modules
-.env
 packge-lock.json
+
+#Credentials
+.env
+cypress.env.json
+
+#Cypress specific
+/cypress/videos
+/cypress/screenshots
+/cypress/reports
+
+#Build files
+/dist
+/.cache
