@@ -1,5 +1,4 @@
 const User = require("../models/User");
-const UserService = require("../services/UserService");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -16,9 +15,13 @@ const AuthService = {
         throw new Error("Credenciais incorretas");
       }
 
-      const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, {
-        expiresIn: "1h",
-      });
+      const token = jwt.sign(
+        { id: user.id, role: user.role },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: "1h",
+        }
+      );
 
       return token;
     } catch (err) {
