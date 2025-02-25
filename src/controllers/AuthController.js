@@ -21,6 +21,7 @@ module.exports = {
   async login(req, res) {
     try {
       const { email, password } = req.body;
+
       const token = await AuthService.login(email, password);
       return res.status(200).json({ token });
     } catch (err) {

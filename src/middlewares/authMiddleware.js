@@ -12,7 +12,10 @@ module.exports = (req, res, next) => {
       token.replace("Bearer ", ""),
       process.env.JWT_SECRET
     );
-    req.user = decoded;
+    req.user = {
+      id: decoded.id,
+      role: decoded.role,
+    };
     next();
   } catch (err) {
     return res.status(400).json({ error: "Token inválido" });
