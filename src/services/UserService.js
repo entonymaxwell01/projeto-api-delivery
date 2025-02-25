@@ -1,6 +1,7 @@
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const { Op } = require("sequelize");
 
 const UserService = {
   async register(nome, email, cpf, password) {
@@ -36,7 +37,7 @@ const UserService = {
       });
       return users;
     } catch (err) {
-      console.log(err);
+      throw err;
     }
   },
 
@@ -45,7 +46,48 @@ const UserService = {
       const user = await User.findByPk(id);
       return user;
     } catch (err) {
+      throw err;
+    }
+  },
+
+  async update(id, nome, email, cpf) {
+    try {
+      const user = await User.findByPk(id);
+
+      if (!user) {
+        throw new Error("Usuário não encontrado");
+      }
+
+      // Adicione validação de campos únicos
+      const existingUser = await User.findOne({
+        where: {
+          [Op.or]: [{ email }, { cpf }],
+          [Op.not]: { id: id },
+        },
+      });
+
+      if (existingUser) {
+        throw new Error("E-mail ou CPF já estão em uso por outro usuário");
+      }
+
+      const updatedUser = await user.update({
+        nome,
+        email,
+        cpf,
+      });
+
+      return {
+        status: 200,
+        data: {
+          id: updatedUser.id,
+          nome: updatedUser.nome,
+          email: updatedUser.email,
+          cpf: updatedUser.cpf,
+        },
+      };
+    } catch (err) {
       console.log(err);
+      throw err;
     }
   },
 };
