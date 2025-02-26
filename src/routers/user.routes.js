@@ -32,6 +32,40 @@ const router = express.Router();
  *         error:
  *           type: string
  *           example: "Usuário não encontrado"
+ *     ConflictError:
+ *       type: object
+ *       properties:
+ *         error:
+ *           type: string
+ *           example: "Este email ou CPF já está em uso por outro usuário"
+ *     UserUpdateResponse:
+ *       type: object
+ *       properties:
+ *         userUpdate:
+ *           type: object
+ *           properties:
+ *             data:
+ *               type: object
+ *               properties:
+ *                 id:
+ *                   type: integer
+ *                   example: 1
+ *                 nome:
+ *                   type: string
+ *                   example: "João ninguem"
+ *                 email:
+ *                   type: string
+ *                   format: email
+ *                   example: "example@example.com"
+ *                 cpf:
+ *                   type: string
+ *                   example: "12345678901"
+ *         message:
+ *           type: string
+ *           example: "Usuário atualizado com sucesso"
+ *       required:
+ *         - userUpdate
+ *         - message
  */
 
 /**
@@ -57,7 +91,7 @@ const router = express.Router();
  *             schema:
  *               type: array
  *               items:
- *                 $ref: '#/components/schemas/User'  # <--- Esquema reutilizável
+ *                 $ref: '#/components/schemas/User'
  *       401:
  *         $ref: '#/components/responses/UnauthorizedError'
  *       400:
@@ -101,6 +135,7 @@ const router = express.Router();
  *         application/json:
  *           schema:
  *             $ref: '#/components/schemas/UserNotFoundResponse'
+ *
  */
 router.get("/", authMiddleware, adminMiddleware, UserController.getAllUsers);
 
@@ -163,6 +198,140 @@ router.get("/", authMiddleware, adminMiddleware, UserController.getAllUsers);
  */
 router.get("/:id", authMiddleware, adminMiddleware, UserController.getUserById);
 
+/**
+ * @swagger
+ * /usuarios/update/{id}:
+ *   put:
+ *     tags: [Usuários]
+ *     summary: Atualiza os dados de um usuário
+ *     description: Atualiza as informações do usuário pelo ID (Acesso restrito a administradores)
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID do usuário a ser atualizado
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/UserUpdate'
+ *           example:
+ *             nome: "João ninguem"
+ *             email: "example@example.com"
+ *             cpf: "12345678901"
+ *     responses:
+ *       200:
+ *         description: Usuário atualizado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/UserUpdateResponse'
+ *       400:
+ *         description: Campos obrigatórios não preenchidos
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/InvalidFieldsError'
+ *       404:
+ *         description: Usuário não encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/UserNotFoundResponse'
+ *       409:
+ *         description: Conflito de dados
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ConflictError'
+ */
+
+/**
+ * @swagger
+ * /usuarios/update/{id}:
+ *   put:
+ *     tags: [Usuários]
+ *     summary: Atualiza os dados do próprio usuário
+ *     description: Atualiza as informações do usuário autenticado (é necessário token JWT válido)
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID do usuário a ser atualizado
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Token JWT no formato Bearer {token}
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             $ref: '#/components/schemas/UserUpdate'
+ *           example:
+ *             nome: "João ninguem"
+ *             email: "example@example.com"
+ *             cpf: "12345678901"
+ *     responses:
+ *       200:
+ *         description: Usuário atualizado com sucesso
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/UserUpdateResponse'
+ *       400:
+ *         description: Campos obrigatórios não preenchidos
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/InvalidFieldsError'
+ *       401:
+ *         description: Token inválido ou não fornecido
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/InvalidTokenResponse'
+ *       404:
+ *         description: Usuário não encontrado
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/UserNotFoundResponse'
+ *       409:
+ *         description: Conflito de dados
+ *         content:
+ *           application/json:
+ *             schema:
+ *               $ref: '#/components/schemas/ConflictError'
+ */
+
+/**
+ * @swagger
+ * components:
+ *   securitySchemes:
+ *     BearerAuth:
+ *       type: http
+ *       scheme: bearer
+ *       bearerFormat: JWT
+ *   schemas:
+ *     InvalidTokenResponse:
+ *       type: object
+ *       properties:
+ *         error:
+ *           type: string
+ *           example: "Token inválido ou expirado"
+ */
 router.put("/update/:id", authMiddleware, UserController.updateUser);
 
 module.exports = router;
