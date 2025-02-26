@@ -77,7 +77,6 @@ const UserService = {
       });
 
       return {
-        status: 200,
         data: {
           id: updatedUser.id,
           nome: updatedUser.nome,
