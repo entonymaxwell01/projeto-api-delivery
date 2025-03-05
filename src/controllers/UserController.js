@@ -51,4 +51,24 @@ module.exports = {
         .json({ error, error: "Erro ao atualizar usuário" });
     }
   },
+
+  async deleteUser(req, res) {
+    try {
+      if (!req.params.id) {
+        return res.status(400).json({ error: "ID do usuário não informado" });
+      }
+
+      const userDeleted = await UserService.delete(req.params.id);
+
+      return res
+        .status(200)
+        .json({ message: "Usuário deletado com sucesso", userDeleted });
+    } catch (error) {
+      if (error.message === "Usuário não encontrado") {
+        return res.status(404).json({ error: "Usuário não encontrado" });
+      }
+      console.log(error);
+      return res.status(500).json({ error: "Erro ao deletar usuário" });
+    }
+  },
 };

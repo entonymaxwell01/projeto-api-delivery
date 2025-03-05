@@ -89,6 +89,28 @@ const UserService = {
       throw err;
     }
   },
+
+  async delete(id) {
+    try {
+      const userExist = await User.findByPk(id);
+      if (!userExist) {
+        throw new Error("Usuário não encontrado");
+      }
+
+      const userDeleted = await userExist.destroy({ where: { id: id } });
+
+      return {
+        data: {
+          id: userExist.id,
+          nome: userExist.nome,
+          cpf: userExist.cpf,
+          email: userExist.email,
+        },
+      };
+    } catch (err) {
+      throw err;
+    }
+  },
 };
 
 module.exports = UserService;
