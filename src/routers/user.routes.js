@@ -334,4 +334,11 @@ router.get("/:id", authMiddleware, adminMiddleware, UserController.getUserById);
  */
 router.put("/update/:id", authMiddleware, UserController.updateUser);
 
+router.delete(
+  "/delete/:id",
+  authMiddleware,
+  adminMiddleware,
+  UserController.deleteUser
+);
+
 module.exports = router;
