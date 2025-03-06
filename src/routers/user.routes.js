@@ -334,6 +334,61 @@ router.get("/:id", authMiddleware, adminMiddleware, UserController.getUserById);
  */
 router.put("/update/:id", authMiddleware, UserController.updateUser);
 
+/**
+ * @swagger
+ * /usuarios/delete/{id}:
+ *   delete:
+ *     tags: [Usuários]
+ *     summary: Deleta um usuário pelo ID
+ *     description: Remove um usuário específico do banco de dados se ele existir.
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         description: ID do usuário a ser deletado.
+ *         schema:
+ *           type: integer
+ *       - in: header
+ *         name: Authorization
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: Token JWT no formato Bearer {token}
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: Usuário deletado com sucesso.
+ *         content:
+ *           application/json:
+ *             example:
+ *               message: "Usuário deletado com sucesso"
+ *               userDeleted:
+ *                 data:
+ *                   id: 10
+ *                   nome: "João ninguém"
+ *                   cpf: "12345678901"
+ *                   email: "example@example.com"
+ *       404:
+ *         description: Usuário não encontrado.
+ *         content:
+ *           application/json:
+ *             example:
+ *               error: "Usuário não encontrado"
+ *       401:
+ *         description: Acesso negado.
+ *         content:
+ *           application/json:
+ *             example:
+ *               error: "Acesso negado"
+ *       400:
+ *         description: Token inválido.
+ *         content:
+ *           application/json:
+ *             example:
+ *               error: "Token inválido"
+ */
+
 router.delete(
   "/delete/:id",
   authMiddleware,
