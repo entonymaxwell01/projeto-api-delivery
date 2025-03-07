@@ -6,7 +6,11 @@ const { Op } = require("sequelize");
 const UserService = {
   async register(nome, email, cpf, password) {
     try {
-      const userExist = await User.findOne({ where: { email: email } });
+      const userExist = await User.findOne({
+        where: {
+          [Op.or]: [{ email: email }, { cpf: cpf }],
+        },
+      });
       if (userExist) {
         throw new Error("Usuário já cadastrado");
       }
