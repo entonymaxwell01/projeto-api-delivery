@@ -7,6 +7,7 @@ require("dotenv").config();
 
 const authRoutes = require("./src/routers/auth.routes");
 const userRoutes = require("./src/routers/user.routes");
+const clienteRoutes = require("./src/routers/cliente.routes");
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(morgan("dev"));
 
 app.use("/auth", authRoutes);
 app.use("/usuarios", userRoutes);
+app.use("/clientes", clienteRoutes);
 
 setupSwagger(app);
 
