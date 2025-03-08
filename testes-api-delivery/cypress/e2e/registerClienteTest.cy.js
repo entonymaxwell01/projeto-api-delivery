@@ -1,14 +1,14 @@
 import { faker } from "@faker-js/faker";
 
-describe("Teste da rota de registro de usuário", () => {
+describe("Teste da rota de registro de cliente", () => {
   it("Deve realizar o cadastro com sucesso", () => {
     cy.request({
       method: "POST",
-      url: "/auth/register",
+      url: "/clientes",
       body: {
         nome: faker.person.firstName(),
         email: faker.internet.email(),
-        cpf: faker.number.int(),
+        cpf: faker.number.int().toString(),
         password: faker.internet.password(),
       },
     }).then((response) => {
@@ -22,11 +22,11 @@ describe("Teste da rota de registro de usuário", () => {
   it("Deve retornar erro de campos obrigatórios não preenchidos", () => {
     cy.request({
       method: "POST",
-      url: "/auth/register",
+      url: "/clientes",
       body: {
         nome: "",
         email: faker.internet.email(),
-        cpf: faker.number.int(),
+        cpf: faker.number.int().toString(),
         password: faker.internet.password(),
       },
       failOnStatusCode: false,
@@ -37,19 +37,19 @@ describe("Teste da rota de registro de usuário", () => {
       expect(response.body.error).to.eq("Campos obrigatórios não preenchidos");
     });
   });
-  it.only("Deve retornar erro de usuário já cadastrado", () => {
+  it("Deve retornar erro de usuário já cadastrado", () => {
     cy.request({
       method: "POST",
-      url: "/auth/register",
+      url: "/clientes",
       body: {
         nome: faker.person.firstName(),
         email: `${Cypress.env("userEmail")}`,
-        cpf: faker.number.int(),
+        cpf: faker.number.int().toString(),
         password: `${Cypress.env("userPassword")}`,
       },
       failOnStatusCode: false,
     }).then((response) => {
-      expect(response.status).to.eq(409);
+      expect(response.status).to.eq(400);
       expect(response.body).to.be.not.null;
       expect(response.body.error).to.eq("Usuário já cadastrado");
     });
