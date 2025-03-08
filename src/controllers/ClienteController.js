@@ -16,9 +16,8 @@ module.exports = {
     } catch (error) {
       if (error.message === "Usuário já cadastrado") {
         return res.status(400).json({ error: error.message });
-      } else if (error.message === "Erro ao registrar cliente") {
-        return res.status(500).json({ error: error.message });
       }
+      return res.status(500).json({ error: error.message });
     }
   },
 };
