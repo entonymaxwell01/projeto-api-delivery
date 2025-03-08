@@ -14,7 +14,11 @@ module.exports = {
       const cliente = await ClienteService.create(nome, email, cpf, password);
       return res.status(201).json(cliente);
     } catch (error) {
-      return res.status(400).json({ error: error.message });
+      if (error.message === "Usuário já cadastrado") {
+        return res.status(400).json({ error: error.message });
+      } else if (error.message === "Erro ao registrar cliente") {
+        return res.status(500).json({ error: error.message });
+      }
     }
   },
 };
