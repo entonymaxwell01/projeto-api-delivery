@@ -1,4 +1,3 @@
-const { create } = require("mochawesome-report-generator");
 const Cliente = require("../models/Cliente");
 const User = require("../models/User");
 const UserService = require("./UserService");
