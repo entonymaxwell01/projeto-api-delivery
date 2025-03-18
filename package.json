@@ -4,7 +4,11 @@
   "description": "Projeto para portfolio de uma api rest para um restaurante com delivery",
   "main": "app.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "docker:down": "docker-compose down",
+    "docker:up": "docker-compose up",
+    "docker:build": "docker-compose build",
+    "docker:restart": "npm run docker:down && npm run docker:build && npm run docker:up"
   },
   "repository": {
     "type": "git",
