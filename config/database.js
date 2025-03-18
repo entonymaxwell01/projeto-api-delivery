@@ -8,7 +8,11 @@ const sequelize = new Sequelize(
   {
     host: process.env.DB_HOST,
     dialect: "postgres",
-    logging: false, // Opcional, para desativar logs SQL
+    logging: false,
+    define: {
+      timestamps: true,
+      underscored: true,
+    },
   }
 );
 

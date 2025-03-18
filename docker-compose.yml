@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    ports:
+      - "3003:3003"
+    environment:
+      # Variáveis de ambiente para sua API
+      - PORT=3003
+      - DB_HOST=db # Aqui usamos o nome do serviço do banco de dados
+      - DB_USER=postgres
+      - DB_PASS=123
+      - DB_NAME=restaurante-delivery
+      - JWT_SECRET=testando-minha-api
+    depends_on:
+      - db
+    # volumes:
+    # - .:/app # Opcional: monta o código fonte para desenvolvimento
+  db:
+    image: postgres:17
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_DB=restaurante-delivery
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data # Persistência de dados
+      - ./pg_hba.conf:/etc/postgresql/pg_hba.conf
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    command: ["postgres", "-c", "hba_file=/etc/postgresql/pg_hba.conf"]
+
+volumes:
+  pgdata:
