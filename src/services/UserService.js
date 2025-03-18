@@ -47,7 +47,10 @@ const UserService = {
 
   async findUserById(id) {
     try {
-      const user = await User.findByPk(id);
+      const user = await User.findByPk(id, {
+        attributes: ["id", "nome", "email", "cpf", "role"],
+      });
+
       return user;
     } catch (err) {
       throw err;
