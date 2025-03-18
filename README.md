@@ -37,15 +37,12 @@ O projeto foi desenvolvido para fins de portfólio e prática, demonstrando habi
 
    ```bash
    git clone https://github.com/entonymaxwell01/projeto-api-delivery
-
-
    ```
 
 2. **Entrar no diretório do projeto:**
 
    ```bash
    cd projeto-api-delivery
-
    ```
 
 3. **Fazendo build do Docker:**
