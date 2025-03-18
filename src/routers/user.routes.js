@@ -257,7 +257,7 @@ router.get("/:id", authMiddleware, adminMiddleware, UserController.getUserById);
  *   put:
  *     tags: [Usuários]
  *     summary: Atualiza os dados do próprio usuário
- *     description: Atualiza as informações do usuário autenticado (é necessário token JWT válido)
+ *     description: Atualiza as informações do usuário autenticado
  *     security:
  *       - BearerAuth: []
  *     parameters:
@@ -339,8 +339,8 @@ router.put("/update/:id", authMiddleware, UserController.updateUser);
  * /usuarios/delete/{id}:
  *   delete:
  *     tags: [Usuários]
- *     summary: Deleta um usuário pelo ID
- *     description: Remove um usuário específico do banco de dados se ele existir.
+ *     summary: Deleta um usuário pelo ID (Restrito a administradores)
+ *     description: Remove um usuário específico do banco de dados se ele existir **Apenas administradores podem acessar esta rota.**
  *     parameters:
  *       - in: path
  *         name: id
