@@ -16,17 +16,18 @@ Este projeto é uma API para restaurantes com delivery. Ele possibilita o gerenc
 **Por que:**  
 O projeto foi desenvolvido para fins de portfólio e prática, demonstrando habilidades na criação de APIs robustas, na documentação de endpoints e na implementação de testes automatizados.
 
----
+
 
 ## Tecnologias e Linguagens Utilizadas
 
-![NodeJS](https://img.shields.io/badge/NodeJS-43853D?style=for-the-badge&logo=node.js&logoColor=white)  
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)  
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white)  
-![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black)  
+![NodeJS](https://img.shields.io/badge/NodeJS-43853D?style=for-the-badge&logo=node.js&logoColor=white) 
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black) 
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?style=for-the-badge&logo=postgresql&logoColor=white) 
+![Swagger](https://img.shields.io/badge/Swagger-85EA2D?style=for-the-badge&logo=swagger&logoColor=black) 
 ![Cypress](https://img.shields.io/badge/Cypress-17202C?style=for-the-badge&logo=cypress&logoColor=white)
 
----
+
+
 
 ## Como Instalar
 
@@ -70,15 +71,17 @@ Documentação (Swagger): <http://localhost:3003/api-docs>
 2.**Realizar Login:**
 Utilize as credenciais que serão definidas:
 
-    ```bash
     {
     "login": "A SER DEFINIDO",
     "senha": "A SER DEFINIDO"
     }
-    ```
 
 3.**Utilizando o Token:**
-Após o login, um token será retornado:
+Após o login, um token será retornado no body:
+
+    {
+    "token: "token_aleatorio"
+    }
 
 No Postman: Adicione o token no header utilizando a chave Authorization.
 No Swagger: Clique em "Authorize" e insira o token para autenticar as rotas.
