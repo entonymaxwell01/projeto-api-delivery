@@ -68,7 +68,7 @@ Utilize as credenciais que serão definidas:
 
     {
     "email": "test@test.com",
-    "password": "123
+    "password": "123"
     }
 
 3.**Utilizando o Token:**
