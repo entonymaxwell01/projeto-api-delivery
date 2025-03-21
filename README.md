@@ -35,22 +35,46 @@ O projeto foi desenvolvido para fins de portfólio e prática, demonstrando habi
 
 1. **Clonar o repositório:**
 
-   ```bash
-   git clone https://github.com/entonymaxwell01/projeto-api-delivery
-   ```
+ ```bash
+ git clone https://github.com/entonymaxwell01/projeto-api-delivery
+ ```
 
 2. **Entrar no diretório do projeto:**
 
-   ```bash
-   cd projeto-api-delivery
-   ```
+ ```bash
+ cd projeto-api-delivery
+ ```
 
-3. **Fazendo build do Docker:**
+*Obs: Com o docker aberto em segundo plano, faça os seguintes passos a seguir*
 
-   ```bash
-   Obs.: Ainda estou configurando o Docker, em breve as instruções completas serão atualizadas
-   # Comandos de build do Docker serão adicionados aqui
-   ```
+3. **Criar (ou reconstruir) as imagens dos containers**
+
+ ```bash
+ docker-compose build
+ ```
+
+Isso irá construir as imagens baseadas na configuração do docker-compose.yml.
+
+4. **Subir os containers em segundo plano**
+
+```bash
+docker-compose up -d
+```
+
+5. **Verificar se os containers estão rodando**
+
+
+```bash
+docker ps
+```
+
+*Obs: Caso estejam rodando corretamente as imagens aparecereção desta forma (exemplo):*
+```bash
+CONTAINER ID   IMAGE                      COMMAND                  CREATED      STATUS          PORTS                    NAMES
+2c5a871c0ef3   projeto-api-delivery-app   "docker-entrypoint.s…"   2 days ago   Up 58 seconds   0.0.0.0:3003->3003/tcp   projeto-api-delivery-app-1
+de3bdb102267   postgres:17                "docker-entrypoint.s…"   2 days ago   Up 8 minutes    0.0.0.0:5432->5432/tcp   projeto-api-delivery-db-1
+```
+
 
 ## Como usar
 
