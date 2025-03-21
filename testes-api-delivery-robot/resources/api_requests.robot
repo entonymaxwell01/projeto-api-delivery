@@ -7,7 +7,7 @@ Resource    main.robot
 
 Fazer requisição GET
     [Arguments]    ${endpoint}    ${headers}
-    ${response}    GET    ${BASE_URL}/${endpoint}    headers=${headers}
+    ${response}    GET    ${BASE_URL}/${endpoint}    headers=${headers}    expected_status=ANY
     RETURN    ${response}
 
 Fazer requisição POST
@@ -17,10 +17,10 @@ Fazer requisição POST
 
 Fazer requisição PUT
     [Arguments]    ${endpoint}    ${body}    ${id}    ${headers}
-    ${response}    POST    ${BASE_URL}/${endpoint}/${id}   json=${body}    headers=${headers}
+    ${response}    POST    ${BASE_URL}/${endpoint}/${id}   json=${body}    headers=${headers}    expected_status=ANY
     RETURN    ${response}
 
 Fazer requisição DELETE
     [Arguments]    ${endpoint}    ${id}    ${headers}
-    ${response}    DELETE    ${BASE_URL}/${endpoint}/${id}    headers=${headers}
+    ${response}    DELETE    ${BASE_URL}/${endpoint}/${id}    headers=${headers}    expected_status=ANY
     RETURN    ${response}
