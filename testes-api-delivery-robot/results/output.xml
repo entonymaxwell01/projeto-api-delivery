@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.12.2 on win32)" generated="2025-03-20T21:25:11.485825" rpa="false" schemaversion="5">
+<suite id="s1" name="Get-All-Users" source="C:\Users\Entony Maxwell\Documents\Estudos\Projeto delivery\projeto-api-delivery\testes-api-delivery-robot\testcases\user\get-user\get-all-users.robot">
+<test id="s1-t1" name="TC01 - Buscando todos os usuários cadastrados" line="16">
+<kw name="Buscar todos os usuários">
+<kw name="Armazenar token test@test.com 123" owner="setup_teardown" source_name="Armazenar token ${EMAIL} ${PASSWORD}">
+<kw name="Realizar login e obter token ${EMAIL} ${PASSWORD}" owner="setup_teardown" source_name="Realizar login e obter token ${EMAIL} ${PASSWORD}">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-03-20T21:25:11.585997" level="INFO">${LOGIN_BODY} = {'email': 'test@test.com', 'password': '123'}</msg>
+<var>${LOGIN_BODY}</var>
+<arg>email=${EMAIL}</arg>
+<arg>password=${PASSWORD}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-03-20T21:25:11.585997" elapsed="0.000000"/>
+</kw>
+<kw name="Fazer requisição POST" owner="api_requests">
+<kw name="POST" owner="RequestsLibrary">
+<msg time="2025-03-20T21:25:11.691544" level="INFO">POST Request : url=http://localhost:3003/auth/login 
+ path_url=/auth/login 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '45'} 
+ body=b'{"email": "test@test.com", "password": "123"}' 
+ </msg>
+<msg time="2025-03-20T21:25:11.691544" level="INFO">POST Response : url=http://localhost:3003/auth/login 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Security-Policy': "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests", 'Cross-Origin-Opener-Policy': 'same-origin', 'Cross-Origin-Resource-Policy': 'same-origin', 'Origin-Agent-Cluster': '?1', 'Referrer-Policy': 'no-referrer', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-DNS-Prefetch-Control': 'off', 'X-Download-Options': 'noopen', 'X-Frame-Options': 'SAMEORIGIN', 'X-Permitted-Cross-Domain-Policies': 'none', 'X-XSS-Protection': '0', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '169', 'ETag': 'W/"a9-+zSflpgHxh4+9Plp5bUOFsOtPE4"', 'Date': 'Fri, 21 Mar 2025 00:25:11 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body={"token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQyNTE2NzExLCJleHAiOjE3NDI1MjAzMTF9.KOiqtrc1X-ptAwJVDDRF12-_jdSOBHt3aQCRkvvcIBs"} 
+ </msg>
+<msg time="2025-03-20T21:25:11.691544" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/${endpoint}</arg>
+<arg>json=${body}</arg>
+<arg>headers=${headers}</arg>
+<arg>expected_status=ANY</arg>
+<doc>Sends a POST request.</doc>
+<status status="PASS" start="2025-03-20T21:25:11.585997" elapsed="0.105547"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-03-20T21:25:11.691544" elapsed="0.000000"/>
+</return>
+<msg time="2025-03-20T21:25:11.691544" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>endpoint=auth/login</arg>
+<arg>body=${LOGIN_BODY}</arg>
+<arg>headers=${HEADERS}</arg>
+<status status="PASS" start="2025-03-20T21:25:11.585997" elapsed="0.105547"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-03-20T21:25:11.691544" elapsed="0.000000"/>
+</return>
+<msg time="2025-03-20T21:25:11.691544" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<status status="PASS" start="2025-03-20T21:25:11.584997" elapsed="0.106547"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-03-20T21:25:11.692543" level="INFO">${token} = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQyNTE2NzExLCJleHAiOjE3NDI1MjAzMTF9.KOiqtrc1X-ptAwJVDDRF12-_jdSOBHt3aQCRkvvcIBs</msg>
+<var>${token}</var>
+<arg>${response.json()['token']}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-03-20T21:25:11.692543" elapsed="0.000000"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-03-20T21:25:11.692543" level="INFO">${AUTH_TOKEN} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQyNTE2NzExLCJleHAiOjE3NDI1MjAzMTF9.KOiqtrc1X-ptAwJVDDRF12-_jdSOBHt3aQCRkvvcIBs</msg>
+<var>${AUTH_TOKEN}</var>
+<arg>Bearer ${token}</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-03-20T21:25:11.692543" elapsed="0.000000"/>
+</kw>
+<return>
+<value>${AUTH_TOKEN}</value>
+<status status="PASS" start="2025-03-20T21:25:11.692543" elapsed="0.000000"/>
+</return>
+<msg time="2025-03-20T21:25:11.692543" level="INFO">${AUTH_TOKEN} = Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQyNTE2NzExLCJleHAiOjE3NDI1MjAzMTF9.KOiqtrc1X-ptAwJVDDRF12-_jdSOBHt3aQCRkvvcIBs</msg>
+<var>${AUTH_TOKEN}</var>
+<status status="PASS" start="2025-03-20T21:25:11.584997" elapsed="0.107546"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2025-03-20T21:25:11.693543" level="INFO">&amp;{header} = { Content-Type=application/json | Authorization=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQyNTE2NzExLCJleHAiOjE3NDI1MjAzMTF9.KOiqtrc1X-ptAwJVDDRF12-_jdSOBHt...</msg>
+<var>&amp;{header}</var>
+<arg>Content-Type=application/json</arg>
+<arg>Authorization=${AUTH_TOKEN}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2025-03-20T21:25:11.692543" elapsed="0.001000"/>
+</kw>
+<kw name="Fazer requisição GET" owner="api_requests">
+<kw name="GET" owner="RequestsLibrary">
+<msg time="2025-03-20T21:25:11.698062" level="INFO">GET Request : url=http://localhost:3003/usuarios 
+ path_url=/usuarios 
+ headers={'User-Agent': 'python-requests/2.31.0', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwicm9sZSI6ImFkbWluIiwiaWF0IjoxNzQyNTE2NzExLCJleHAiOjE3NDI1MjAzMTF9.KOiqtrc1X-ptAwJVDDRF12-_jdSOBHt3aQCRkvvcIBs'} 
+ body=None 
+ </msg>
+<msg time="2025-03-20T21:25:11.698062" level="INFO">GET Response : url=http://localhost:3003/usuarios 
+ status=200, reason=OK 
+ headers={'Access-Control-Allow-Origin': '*', 'Content-Security-Policy': "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests", 'Cross-Origin-Opener-Policy': 'same-origin', 'Cross-Origin-Resource-Policy': 'same-origin', 'Origin-Agent-Cluster': '?1', 'Referrer-Policy': 'no-referrer', 'Strict-Transport-Security': 'max-age=31536000; includeSubDomains', 'X-Content-Type-Options': 'nosniff', 'X-DNS-Prefetch-Control': 'off', 'X-Download-Options': 'noopen', 'X-Frame-Options': 'SAMEORIGIN', 'X-Permitted-Cross-Domain-Policies': 'none', 'X-XSS-Protection': '0', 'Content-Type': 'application/json; charset=utf-8', 'Content-Length': '1020', 'ETag': 'W/"3fc-EpGlyXouypchl0RkXnAxSg53R3A"', 'Date': 'Fri, 21 Mar 2025 00:25:11 GMT', 'Connection': 'keep-alive', 'Keep-Alive': 'timeout=5'} 
+ body=[{"id":2,"nome":"ADMIN","email":"test@test.com","cpf":"12345678910","role":"admin"},{"id":5,"nome":"","email":"test@test2.com","cpf":"12345678920","role":"cliente"},{"id":6,"nome":" ","email":"test@test3.com","cpf":"12345678930","role":"cliente"},{"id":7,"nome":"Ana","email":"test@teste.com","cpf":"21123","role":"cliente"},{"id":8,"nome":"Keaton","email":"Daisy.Purdy59@hotmail.com","cpf":"3510674974210203","role":"cliente"},{"id":9,"nome":"Caesar","email":"Erika89@gmail.com","cpf":"8264911720518442","role":"cliente"},{"id":1,"nome":"João pereira","email":"joao.silva@example.com","cpf":"12345678901","role":"cliente"},{"id":18,"nome":"João ninguem","email":"example20@test.com","cpf":"12891281201","role":"cliente"},{"id":22,"nome":"João ninguem","email":"example10@test.com","cpf":"213189313891","role":"cliente"},{"id":23,"nome":"TEste","email":"example40@test.com","cpf":"129891812","role":"cliente"},{"id":24,"nome":"Aurelio","email":"Mable_Hettinger76@gmail.com","cpf":"5662237611158543","role":"cliente"}] 
+ </msg>
+<msg time="2025-03-20T21:25:11.698062" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>${BASE_URL}/${endpoint}</arg>
+<arg>headers=${headers}</arg>
+<doc>Sends a GET request.</doc>
+<status status="PASS" start="2025-03-20T21:25:11.693543" elapsed="0.004519"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-03-20T21:25:11.698062" elapsed="0.000000"/>
+</return>
+<msg time="2025-03-20T21:25:11.698062" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>usuarios</arg>
+<arg>${header}</arg>
+<status status="PASS" start="2025-03-20T21:25:11.693543" elapsed="0.004519"/>
+</kw>
+<return>
+<value>${response}</value>
+<status status="PASS" start="2025-03-20T21:25:11.698062" elapsed="0.001000"/>
+</return>
+<msg time="2025-03-20T21:25:11.699062" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<status status="PASS" start="2025-03-20T21:25:11.583998" elapsed="0.115064"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2025-03-20T21:25:11.699062" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2025-03-20T21:25:11.699062" elapsed="0.000000"/>
+</kw>
+<kw name="Should Not Be Empty" owner="BuiltIn">
+<msg time="2025-03-20T21:25:11.700062" level="INFO">Length is 11.</msg>
+<arg>${response.json()}</arg>
+<doc>Verifies that the given item is not empty.</doc>
+<status status="PASS" start="2025-03-20T21:25:11.699062" elapsed="0.001000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-03-20T21:25:11.700062" level="INFO">[{'id': 2, 'nome': 'ADMIN', 'email': 'test@test.com', 'cpf': '12345678910', 'role': 'admin'}, {'id': 5, 'nome': '', 'email': 'test@test2.com', 'cpf': '12345678920', 'role': 'cliente'}, {'id': 6, 'nome': ' ', 'email': 'test@test3.com', 'cpf': '12345678930', 'role': 'cliente'}, {'id': 7, 'nome': 'Ana', 'email': 'test@teste.com', 'cpf': '21123', 'role': 'cliente'}, {'id': 8, 'nome': 'Keaton', 'email': 'Daisy.Purdy59@hotmail.com', 'cpf': '3510674974210203', 'role': 'cliente'}, {'id': 9, 'nome': 'Caesar', 'email': 'Erika89@gmail.com', 'cpf': '8264911720518442', 'role': 'cliente'}, {'id': 1, 'nome': 'João pereira', 'email': 'joao.silva@example.com', 'cpf': '12345678901', 'role': 'cliente'}, {'id': 18, 'nome': 'João ninguem', 'email': 'example20@test.com', 'cpf': '12891281201', 'role': 'cliente'}, {'id': 22, 'nome': 'João ninguem', 'email': 'example10@test.com', 'cpf': '213189313891', 'role': 'cliente'}, {'id': 23, 'nome': 'TEste', 'email': 'example40@test.com', 'cpf': '129891812', 'role': 'cliente'}, {'id': 24, 'nome': 'Aurelio', 'email': 'Mable_Hettinger76@gmail.com', 'cpf': '5662237611158543', 'role': 'cliente'}]</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-03-20T21:25:11.700062" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2025-03-20T21:25:11.583998" elapsed="0.116064"/>
+</test>
+<status status="PASS" start="2025-03-20T21:25:11.487262" elapsed="0.213800"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Get-All-Users" id="s1" pass="1" fail="0" skip="0">Get-All-Users</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
