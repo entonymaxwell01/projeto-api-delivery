@@ -17,7 +17,7 @@ Fazer requisição POST
 
 Fazer requisição PUT
     [Arguments]    ${endpoint}    ${body}    ${id}    ${headers}
-    ${response}    POST    ${BASE_URL}/${endpoint}/${id}   json=${body}    headers=${headers}    expected_status=ANY
+    ${response}    PUT    ${BASE_URL}/${endpoint}${id}   json=${body}    headers=${headers}    expected_status=ANY
     RETURN    ${response}
 
 Fazer requisição DELETE
