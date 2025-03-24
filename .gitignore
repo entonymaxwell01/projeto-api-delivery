@@ -15,4 +15,7 @@ cypress.env.json
 /dist
 /.cache
 
-testes-api-delivery-robot/results
+
+#Results files
+**/results/
+
