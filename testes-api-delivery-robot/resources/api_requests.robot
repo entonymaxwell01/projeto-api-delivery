@@ -22,5 +22,5 @@ Fazer requisição PUT
 
 Fazer requisição DELETE
     [Arguments]    ${endpoint}    ${id}    ${headers}
-    ${response}    DELETE    ${BASE_URL}/${endpoint}/${id}    headers=${headers}    expected_status=ANY
+    ${response}    DELETE    ${BASE_URL}/${endpoint}${id}    headers=${headers}    expected_status=ANY
     RETURN    ${response}
