@@ -77,11 +77,7 @@ TC05 - Atualizando um usuário inexistente
     ${email}=    FakerLibrary.Email
     ${password}=    FakerLibrary.Password
     ${body}=    Create Dictionary    nome=${nome}   email=${email}   cpf=12345678910   password=${password}
-    ${AUTH_TOKEN}=    Armazenar token test@test.com 123
-    &{header}    Create Dictionary    
-    ...    Content-Type=application/json    
-    ...    Authorization=${AUTH_TOKEN}
-    ${response}=    Atualizar um usuário com erro    id=999    body=${body}   header=${header}
+    ${response}=    Atualizar um usuário com sucesso     id=999    body=${body}   
     Should Be Equal As Strings    ${response.status_code}    404
     Should Be Equal As Strings    ${response.json()["error"]}    Usuário não encontrado
 
