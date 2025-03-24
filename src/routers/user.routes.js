@@ -26,6 +26,12 @@ const router = express.Router();
  *         error:
  *           type: string
  *           example: "Usuário não autorizado"
+ *     InvalidFieldsError:
+ *       type: object
+ *       properties:
+ *         error:
+ *          type: string
+ *          example: "Campos obrigatórios não preenchidos"
  *     UserNotFoundResponse:
  *       type: object
  *       properties:
