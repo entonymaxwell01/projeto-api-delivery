@@ -11,7 +11,7 @@ Este projeto é uma API para restaurantes com delivery. Ele possibilita o gerenc
 - **Framework:** NodeJS
 - **Banco de Dados:** PostgreSQL
 - **Documentação:** Swagger
-- **Testes Automatizados:** Cypress
+- **Testes Automatizados:** Cypress e Robot Framework
 
 **Por que:**  
 O projeto foi desenvolvido para fins de portfólio e prática, demonstrando habilidades na criação de APIs robustas, na documentação de endpoints e na implementação de testes automatizados.
