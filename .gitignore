@@ -17,5 +17,7 @@ testes-api-delivery-cypress/package.json
 /.cache
 
 
-
+#Results files
+**/results/
+**/report
 
