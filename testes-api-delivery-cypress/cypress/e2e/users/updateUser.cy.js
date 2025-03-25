@@ -1,17 +1,31 @@
 import { faker } from "@faker-js/faker";
+before(() => {
+  // Login para obter o token de admin
+  cy.request({
+    method: "POST",
+    url: "/auth/login",
+    body: {
+      email: `${Cypress.env("adminEmail")}`,
+      password: `${Cypress.env("adminPassword")}`,
+    },
+  }).then((response) => {
+    expect(response.status).to.eq(200);
+    Cypress.env("adminToken", response.body.token);
+  });
+});
 
 describe("Testes da rota de update", () => {
   it("Deve atualizar os dados de um usuário com sucesso", () => {
     cy.request({
       method: "PUT",
-      url: "/usuarios/update/13",
+      url: "/usuarios/update/5",
       body: {
         nome: "Usuário de testes",
-        email: "example10@test.com",
-        cpf: "12891281201",
+        email: "test@test2.com",
+        cpf: "12345678920",
       },
       headers: {
-        Authorization: `Bearer ${Cypress.env("userToken")}`,
+        Authorization: `Bearer ${Cypress.env("adminToken")}`,
       },
     }).then((response) => {
       expect(response.status).to.eq(200);
@@ -25,14 +39,14 @@ describe("Testes da rota de update", () => {
   it("Deve retornar erro ao não preencher campos obrigatórios", () => {
     cy.request({
       method: "PUT",
-      url: "/usuarios/update/13",
+      url: "/usuarios/update/5",
       body: {
         nome: "",
         email: "example10@test.com",
         cpf: "12891281201",
       },
       headers: {
-        Authorization: `Bearer ${Cypress.env("userToken")}`,
+        Authorization: `Bearer ${Cypress.env("adminToken")}`,
       },
       failOnStatusCode: false,
     }).then((response) => {
@@ -52,7 +66,7 @@ describe("Testes da rota de update", () => {
         cpf: "12891281201",
       },
       headers: {
-        Authorization: `Bearer ${Cypress.env("userToken")}`,
+        Authorization: `Bearer ${Cypress.env("adminToken")}`,
       },
       failOnStatusCode: false,
     }).then((response) => {
@@ -64,14 +78,14 @@ describe("Testes da rota de update", () => {
   it("Deve retornar erro ao não CPF ou EMAIL já estarem sendo utilizados por outro usuário", () => {
     cy.request({
       method: "PUT",
-      url: "/usuarios/update/13",
+      url: "/usuarios/update/5",
       body: {
         nome: "Usuário de testes",
         email: "example10@test.com",
         cpf: "12345678910",
       },
       headers: {
-        Authorization: `Bearer ${Cypress.env("userToken")}`,
+        Authorization: `Bearer ${Cypress.env("adminToken")}`,
       },
       failOnStatusCode: false,
     }).then((response) => {
