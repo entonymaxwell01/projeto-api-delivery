@@ -1,5 +1,3 @@
-# projeto-api-delivery
-
 ## Descrição
 
 **O que o app faz:**  
@@ -151,6 +149,33 @@ robot -d results testcases/
 **A seguir serão apresentados alguns relátorios de testes**
 
 #### Relatórios testes com Cypress:
+
+<br>- **Relatório de testes da rota de login:**
+[Relatório de testes da rota de login](testes-api-delivery-cypress/cypress/report/loginTest/report_002.html)
+<img src="https://github.com/user-attachments/assets/629fdbc0-5e9c-4a6d-85a3-add3202242ab" width="1000">  
+
+<br>- **Relatório de testes da rota de cadastrar um usuário:**
+[Relatório de testes da rota de cadastrar um usuário:](testes-api-delivery-cypress/cypress/report/registerClienteTest/report_002.html)
+<img src="https://github.com/user-attachments/assets/1a89a8c2-6ece-4c9e-8cd7-2f28deefe4e5" width="1000">  
+
+<br>- **Relatório de testes da rota de buscar todos os usuários:**
+[Relatório de testes da rota de buscar todos os usuários:](testes-api-delivery-cypress/cypress/report/findAllUsersTest/report_002.html)
+<img src="https://github.com/user-attachments/assets/fa2ab342-83bb-4689-88c5-3ecee0652c0c" width="1000">  
+
+<br>- **Relatório de testes da rota de buscar um unico usuário:**
+[Relatório de testes da rota de buscar um unico usuário:](testes-api-delivery-cypress/cypress/report/findUserTest/report_002.html)
+<img src="https://github.com/user-attachments/assets/10b3c1e9-cdfe-4469-bef4-d30215896528" width="1000">  
+
+<br>- **Relatório de testes da rota de atualizar um usuário:**
+[Relatório de testes da rota de atualizar um usuário](testes-api-delivery-cypress/cypress/report/updateUser/report_002.html)
+<img src="https://github.com/user-attachments/assets/be657748-9f02-42ab-8bf3-d4b693070a3f" width="1000">  
+
+<br>- **Relatório de testes da rota de excluir usuários:**
+[Relatório de testes da rota de excluir usuários](testes-api-delivery-cypress/cypress/report/deleteUserTest/report_002.html) 
+<img src="https://github.com/user-attachments/assets/b249f190-1c22-4c86-8c8c-1b6ee281a403" width="1000">  
+
+
+*Obs: Todos os relatórios estão em arquivos .html, para visualizados corretamente baixe os juntos com a pasta assets e deixe-os no mesmo diretório*
 
 
 
