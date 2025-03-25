@@ -105,3 +105,59 @@ No Swagger: Clique em "Authorize" e insira o token para autenticar as rotas.
 4.**Acessar os Endpoints:**
 Consulte a documentação completa no Swagger para acessar e testar os endpoints desejados.
 Documentação (Swagger): <http://localhost:3003/api-docs>
+
+## Testes Automatizados na API
+Estes são os testes automatizados que foram realizados nesta mesma API, visando garantir a qualidade da mesma.
+
+### Tecnologias Utilizadas 
+- **Cypress**: Testes de ponta a ponta para validar a interação com a API de forma programática.
+- **Robot Framework**: Testes baseados em palavras-chave para automação de fluxos complexos e validação de respostas da API.
+
+### Execução dos Testes
+- Acesse o diretório dos testes que quer que sejam executados
+
+#### Cypress:
+
+```bash
+cd projeto-api-delivery/testes-api-delivery-cypress
+```
+
+- Para rodar os testes com Cypress, execute:
+```bash
+npx cypress open
+```
+
+- Ou para execução em modo headless:
+```bash
+npx cypress run
+```
+
+#### Robot Framework:
+
+```bash
+cd projeto-api-delivery/testes-api-delivery-robot
+```
+
+- Para rodar os testes com Robot, execute:
+```bash
+robot -d results testcases/
+```
+
+### Relatórios
+- Os resultados dos testes são gerados automaticamente e podem ser acessados nos seguintes arquivos:
+- **Cypress**: cypress/reports/
+- **Robot Framework**: testcases/*{perfil_exemplo}*/*{test_exemplo}*/results/log.html
+
+**A seguir serão apresentados alguns relátorios de testes**
+
+#### Relatórios testes com Cypress:
+
+
+
+#### Relatórios testes com Robot:
+
+
+
+
+
+
