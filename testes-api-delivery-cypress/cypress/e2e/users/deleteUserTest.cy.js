@@ -17,7 +17,7 @@ describe("Testes da rota de excluir usuário", () => {
   it.only("Deve excluir um usuário com sucesso", () => {
     cy.request({
       method: "DELETE",
-      url: "/usuarios/delete/25",
+      url: "/usuarios/delete/40",
       headers: {
         authorization: `Bearer ${Cypress.env("adminToken")}`,
       },
