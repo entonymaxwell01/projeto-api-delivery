@@ -10,7 +10,7 @@ cypress.env.json
 /cypress/videos
 /cypress/screenshots
 /cypress/reports
-testes-api-delivery-cypress/package.json
+
 
 #Build files
 /dist
