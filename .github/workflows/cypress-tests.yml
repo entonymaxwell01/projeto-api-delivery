@@ -32,4 +32,5 @@ jobs:
       - name: Run Cypress tests
         run: |
           cd testes-api-delivery-cypress
+          npm install
           npx cypress run
