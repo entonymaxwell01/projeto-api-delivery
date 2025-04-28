@@ -4,7 +4,6 @@ package-lock.json
 
 #Credentials
 .env
-cypress.env.json
 
 #Cypress specific
 /cypress/videos
