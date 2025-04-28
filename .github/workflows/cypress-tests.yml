@@ -1,0 +1,33 @@
+name: Run Cypress Tests
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  cypress-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and start containers
+        run: |
+          docker-compose up -d --build
+
+      - name: Wait for API to be ready
+        uses: jakejarvis/wait-action@v0.1.1
+        with:
+          url: "http://localhost:3003"
+          timeout: 90 # tempo limite em segundos para a API subir
+
+      - name: Run Cypress tests
+        run: npx cypress run
