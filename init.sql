@@ -29,6 +29,12 @@ BEGIN
         INSERT INTO usuarios (nome, email, cpf, password, role)
         VALUES ('Delete User', 'delete@test.com', '11111111111', '$2b$10$Y/B8njSH2MCCTPhJcAS9MODTYg5XszeejXxTUvdvaz7/0LkIPnGkS', 'cliente');
     END IF;
+
+    
+    IF NOT EXISTS (SELECT 1 FROM usuarios WHERE email = 'user@test.com') THEN
+        INSERT INTO usuarios (nome, email, cpf, password, role)
+        VALUES ('Teste User', 'user@test.com', '2222222222222', '$2b$10$Y/B8njSH2MCCTPhJcAS9MODTYg5XszeejXxTUvdvaz7/0LkIPnGkS', 'cliente');
+    END IF;
 END
 
 
