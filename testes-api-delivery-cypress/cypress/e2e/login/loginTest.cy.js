@@ -4,8 +4,8 @@ describe("Teste da rota de login", () => {
       method: "POST",
       url: "/auth/login",
       body: {
-        email: `${Cypress.env("userEmail")}`,
-        password: `${Cypress.env("userPassword")}`,
+        email: `${Cypress.env("adminEmail")}`,
+        password: `${Cypress.env("adminPassword")}`,
       },
     }).then((response) => {
       expect(response.status).to.eq(200);
