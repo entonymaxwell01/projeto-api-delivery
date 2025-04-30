@@ -29,6 +29,14 @@ jobs:
           url: "http://localhost:3003"
           timeout: 90
 
+      - name: List running containers
+        run: |
+          docker ps -a
+
+      - name: Wait for database to be ready
+        run: |
+          until docker exec db pg_isready -U postgres; do sleep 1; done
+
       - name: Debug database container
         run: |
           docker exec db ls -l /docker-entrypoint-initdb.d/
