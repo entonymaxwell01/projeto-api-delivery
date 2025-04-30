@@ -43,7 +43,7 @@ jobs:
 
       - name: Populate database
         run: |
-          docker exec -i projeto-api-delivery-db-1 psql -U postgres -d restaurante-delivery < ./init.sql:/docker-entrypoint-initdb.d/init.sql
+          docker exec -i projeto-api-delivery-db-1 psql -U postgres -d restaurante-delivery < init.sql
         env:
           PGPASSWORD: 123
 
