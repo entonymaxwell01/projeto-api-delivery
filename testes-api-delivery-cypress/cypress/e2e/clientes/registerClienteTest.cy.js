@@ -8,7 +8,7 @@ describe("Teste da rota de registro de cliente", () => {
       body: {
         nome: faker.person.firstName(),
         email: faker.internet.email(),
-        cpf: faker.number.int().toString(),
+        cpf: faker.string.numeric(11),
         password: faker.internet.password(),
       },
     }).then((response) => {
@@ -26,7 +26,7 @@ describe("Teste da rota de registro de cliente", () => {
       body: {
         nome: "",
         email: faker.internet.email(),
-        cpf: faker.number.int().toString(),
+        cpf: faker.string.numeric(11),
         password: faker.internet.password(),
       },
       failOnStatusCode: false,
@@ -43,9 +43,9 @@ describe("Teste da rota de registro de cliente", () => {
       url: "/clientes",
       body: {
         nome: faker.person.firstName(),
-        email: `${Cypress.env("userEmail")}`,
-        cpf: faker.number.int().toString(),
-        password: `${Cypress.env("userPassword")}`,
+        email: `${Cypress.env("adminEmail")}`,
+        cpf: faker.string.numeric(11),
+        password: `${Cypress.env("adminPassword")}`,
       },
       failOnStatusCode: false,
     }).then((response) => {
