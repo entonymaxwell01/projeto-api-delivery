@@ -18,7 +18,7 @@ describe("Testes da rota de update", () => {
   it("Deve atualizar os dados de um usuário com sucesso", () => {
     cy.request({
       method: "PUT",
-      url: "/usuarios/update/2",
+      url: "/usuarios/update/3",
       body: {
         nome: "Usuário de testes",
         email: "test@test2.com",
@@ -78,7 +78,7 @@ describe("Testes da rota de update", () => {
   it("Deve retornar erro ao não CPF ou EMAIL já estarem sendo utilizados por outro usuário", () => {
     cy.request({
       method: "PUT",
-      url: "/usuarios/update/2",
+      url: "/usuarios/update/3",
       body: {
         nome: "Usuário de testes",
         email: `${Cypress.env("adminEmail")}`,

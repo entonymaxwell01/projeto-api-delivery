@@ -25,7 +25,7 @@ describe("Testes da rota de buscar um unico usuário", () => {
       expect(response.status).to.eq(200);
       expect(response.body).to.be.not.null;
       expect(response.body).to.be.an("object");
-      expect(response.body.id).to.eq(2);
+      expect(response.body.id).to.eq(1);
     });
   });
 
