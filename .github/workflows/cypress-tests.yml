@@ -27,7 +27,11 @@ jobs:
         uses: jakejarvis/wait-action@v0.1.1
         with:
           url: "http://localhost:3003"
-          timeout: 90 # tempo limite em segundos para a API subir
+          timeout: 90
+
+      - name: Debug database container
+        run: |
+          docker exec db ls -l /docker-entrypoint-initdb.d/
 
       - name: Populate database
         run: |
