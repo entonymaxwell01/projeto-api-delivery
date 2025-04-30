@@ -17,7 +17,7 @@ describe("Testes da rota de buscar um unico usuário", () => {
   it("Deve buscar um usuário com sucesso", () => {
     cy.request({
       method: "GET",
-      url: "/usuarios/2",
+      url: "/usuarios/1",
       headers: {
         authorization: `Bearer ${Cypress.env("adminToken")}`,
       },
