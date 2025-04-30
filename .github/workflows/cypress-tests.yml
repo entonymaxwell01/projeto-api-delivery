@@ -29,6 +29,12 @@ jobs:
           url: "http://localhost:3003"
           timeout: 90 # tempo limite em segundos para a API subir
 
+      - name: Populate database
+        run: |
+          docker exec -i db psql -U postgres -d restaurante-delivery < /docker-entrypoint-initdb.d/init.sql
+        env:
+          PGPASSWORD: 123
+
       - name: Run Cypress tests
         run: |
           cd testes-api-delivery-cypress
