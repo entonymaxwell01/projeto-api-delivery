@@ -39,11 +39,11 @@ jobs:
 
       - name: Debug database container
         run: |
-          docker exec db ls -l /docker-entrypoint-initdb.d/
+          docker exec projeto-api-delivery-db-1 ls -l /docker-entrypoint-initdb.d/
 
       - name: Populate database
         run: |
-          docker exec -i db psql -U postgres -d restaurante-delivery < /docker-entrypoint-initdb.d/init.sql
+          docker exec -i projeto-api-delivery-db-1 psql -U postgres -d restaurante-delivery < /docker-entrypoint-initdb.d/init.sql
         env:
           PGPASSWORD: 123
 
