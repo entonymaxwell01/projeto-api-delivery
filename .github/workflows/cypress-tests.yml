@@ -48,7 +48,9 @@ jobs:
           PGPASSWORD: 123
 
       - name: Run Cypress tests
-        run: |
-          cd testes-api-delivery-cypress
-          npm install
-          npx cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: ./testes-api-delivery-cypress
+          config-file: cypress.config.js
+        env:
+          CYPRESS_baseUrl: "http://localhost:3003"
