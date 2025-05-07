@@ -1,6 +1,4 @@
-import { faker } from "@faker-js/faker";
 before(() => {
-  // Login para obter o token de admin
   cy.request({
     method: "POST",
     url: "/auth/login",
