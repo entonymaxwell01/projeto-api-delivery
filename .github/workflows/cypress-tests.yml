@@ -51,8 +51,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           cd: ./testes-api-delivery-cypress
-          build: npm run build
-          start: npm start
+          build: ""
           config-file: cypress.config.js
         env:
           CYPRESS_baseUrl: "http://localhost:3003"
