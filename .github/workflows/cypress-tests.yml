@@ -47,11 +47,14 @@ jobs:
         env:
           PGPASSWORD: 123
 
+      - name: Install dependencies
+        working-directory: ./testes-api-delivery-cypress
+        run: npm ci
+
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
-          cd: ./testes-api-delivery-cypress
-          build: ""
+          working-directory: ./testes-api-delivery-cypress
           config-file: cypress.config.js
         env:
           CYPRESS_baseUrl: "http://localhost:3003"
