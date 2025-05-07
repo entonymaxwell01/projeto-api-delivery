@@ -1,6 +1,5 @@
 #Pacokage files
 node_modules
-package-lock.json
 
 #Credentials
 .env
